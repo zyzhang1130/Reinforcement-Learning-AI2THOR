@@ -1,0 +1,7 @@
+for evaluation: python main.py  --evaluate --model-path /home/user/Documents/Zeyu/cups-rl4/weights/rainbow_100000.pt
+
+
+run anaconda-navigator:
+source ~/anaconda3/bin/activate root
+anaconda-navigator
+

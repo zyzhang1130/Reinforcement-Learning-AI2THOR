@@ -1,0 +1,90 @@
+parser.add_argument('--game', type=str, default='ai2thor', help='ATARI game or environment')
+parser.add_argument('--max-num-steps', type=int, default=int(50e6), metavar='STEPS',
+                    help='Number of training steps')
+parser.add_argument('--max-episode-length', type=int, default=int(400), metavar='LENGTH',
+                    help='Max episode length (0 to disable)')
+parser.add_argument('--history-length', type=int, default=500, metavar='T',
+                    help='Number of consecutive states processed')
+parser.add_argument('--hidden-size', type=int, default=512, metavar='SIZE',
+                    help='Network hidden size')
+parser.add_argument('--noisy-std', type=float, default=0.8, metavar='σ',
+                    help='Initial standard deviation of noisy linear layers')
+parser.add_argument('--num-atoms', type=int, default=51, metavar='C',
+                    help='Discretised size of value distribution')
+parser.add_argument('--V-min', type=float, default=-10, metavar='V',
+                    help='Minimum of value distribution support')
+parser.add_argument('--V-max', type=float, default=10, metavar='V',
+                    help='Maximum of value distribution support')
+parser.add_argument('--model-path', type=str, metavar='PARAMS', help='Pretrained model (state dict)')
+parser.add_argument('--memory-capacity', type=int, default=int(1e6), metavar='CAPACITY',
+                    help='Experience replay memory capacity')
+parser.add_argument('--replay-frequency', type=int, default=1, metavar='k',
+                    help='Frequency of sampling from memory')
+parser.add_argument('--priority-exponent', type=float, default=0.1, metavar='ω',
+                    help='Prioritised experience replay exponent (originally denoted α)')
+parser.add_argument('--priority-weight', type=float, default=0.4, metavar='β',
+                    help='Initial prioritised experience replay importance sampling weight')
+parser.add_argument('--multi-step', type=int, default=3, metavar='n',
+                    help='Number of steps for multi-step return')
+parser.add_argument('--discount', type=float, default=0.99, metavar='γ',
+                    help='Discount factor')
+parser.add_argument('--target-update', type=int, default=int(32e3), metavar='τ',
+                    help='Number of steps after which to update target network')
+parser.add_argument('--reward-clip', type=int, default=0, metavar='VALUE',
+                    help='Reward clipping (0 to disable)')
+parser.add_argument('--lr', type=float, default=0.0000625, metavar='η',
+                    help='Learning rate')
+parser.add_argument('--adam-eps', type=float, default=1.5e-4, metavar='ε',
+                    help='Adam epsilon')
+parser.add_argument('--batch-size', type=int, default=32, metavar='SIZE',
+                    help='Batch size')
+parser.add_argument('--learn-start', type=int, default=int(50000), metavar='STEPS',
+                    help='Number of steps before starting training')
+parser.add_argument('--evaluate-only', action='store_true', help='Evaluate only')
+parser.add_argument('--evaluation-interval', type=int, default=5e8, metavar='STEPS',
+                    help='Number of training steps between evaluations')
+parser.add_argument('--evaluation-episodes', type=int, default=5, metavar='N',
+                    help='Number of evaluation episodes to average over')
+parser.add_argument('--evaluation-size', type=int, default=1500, metavar='N',
+                    help='Number of transitions to use for validating Q')
+parser.add_argument('--log-interval', type=int, default=200, metavar='STEPS',
+                    help='Number of training steps between logging status')
+parser.add_argument('--render', action='store_true', default=False,
+                    help='Display screen (testing only)')
+parser.add_argument('--config-file', type=str, default='config_files/rainbow_example.json',
+                    help='Config file used for ai2thor environment definition')
+
+
+{   "max_episode_length": 1500,
+    "open_close_interaction": true,
+    "pickup_put_interaction": true,
+    "pickup_objects": [
+      "CellPhone"
+    ],
+    "acceptable_receptacles": [
+        "SideTable",
+        "TableTop",
+        "Bed",
+        "SideTable",
+        "Desk",
+        "LaundryHamper",
+        "CoffeeTable",
+        "DiningTable",
+        "Sofa",
+        "Box",
+        "Drawer",
+        "Chair"
+
+    ],
+    "openable_objects": [
+        "Drawer","LaundryHamperLid","Box"
+    ],
+    "scene_id": "FloorPlan304",
+    "grayscale": true,
+    "resolution": [64, 64],
+    "task": {
+        "task_name": "Hideandseek",
+        "target_objects": {"CellPhone":30
+         }
+    }
+}
